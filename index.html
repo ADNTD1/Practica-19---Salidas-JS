@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salidas de texto en JavaScript - Adrian Tadeo Montes Vazquez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#fff5f5;
+      --bg-2:#ffe3e3;
+      --card:#ffffff;
+      --primary:#b91c1c;
+      --primary-dark:#7f1d1d;
+      --accent:#ef4444;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#fecaca;
+      --shadow:0 18px 40px rgba(127,29,29,.12);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, #ffe4e6 0%, transparent 28%),
+        radial-gradient(circle at bottom right, #fecaca 0%, transparent 25%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      min-height:100vh;
+    }
+
+    .container{
+      width:min(1100px, 92%);
+      margin:40px auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, #7f1d1d, #b91c1c 55%, #ef4444);
+      color:white;
+      border-radius:24px;
+      padding:36px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+      top:-90px;
+      right:-70px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.28);
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:.2px;
+      background:rgba(255,255,255,.08);
+      backdrop-filter: blur(6px);
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(30px, 4vw, 48px);
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      line-height:1.7;
+      color:rgba(255,255,255,.92);
+      font-size:16px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:22px;
+      margin-top:26px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:20px;
+      color:var(--primary-dark);
+    }
+
+    .card p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .output{
+      background:#fff1f2;
+      border:1px dashed #fda4af;
+      border-radius:16px;
+      padding:14px;
+      min-height:58px;
+      color:#881337;
+      font-weight:600;
+      line-height:1.6;
+    }
+
+    .btn{
+      margin-top:14px;
+      border:none;
+      border-radius:14px;
+      padding:12px 16px;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      color:white;
+      font-family:inherit;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease;
+      box-shadow:0 10px 22px rgba(185,28,28,.18);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 26px rgba(185,28,28,.24);
+    }
+
+    .info{
+      margin-top:26px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .info h2{
+      margin:0 0 12px;
+      color:var(--primary-dark);
+    }
+
+    .list{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:14px;
+      padding:0;
+      margin:0;
+      list-style:none;
+    }
+
+    .list li{
+      background:#fff5f5;
+      border:1px solid #fecaca;
+      border-radius:16px;
+      padding:14px;
+      line-height:1.55;
+    }
+
+    .footer{
+      text-align:center;
+      color:#7f1d1d;
+      margin:22px 0 10px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    code{
+      background:#fee2e2;
+      color:#991b1b;
+      padding:2px 7px;
+      border-radius:8px;
+      font-size:.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="badge">Práctica de JavaScript</div>
+      <h1>Diferentes formas de salida de texto en JavaScript</h1>
+      <p>
+        En esta página se muestran ejemplos usando datos personales de <strong>Adrian Tadeo Montes Vazquez</strong>.
+        Se utilizan <code>innerHTML</code>, <code>innerText</code>, <code>document.write()</code>,
+        <code>alert()</code>, <code>console.log()</code> y <code>print()</code>.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Salida con innerHTML</h2>
+        <p>Inserta contenido HTML dentro de un elemento del documento.</p>
+        <div id="salidaInnerHTML" class="output"></div>
+      </article>
+
+      <article class="card">
+        <h2>Salida con innerText</h2>
+        <p>Muestra texto plano dentro de un elemento, sin interpretar etiquetas HTML.</p>
+        <div id="salidaInnerText" class="output"></div>
+      </article>
+
+      <article class="card">
+        <h2>Salida con document.write()</h2>
+        <p>Escribe contenido directamente en el documento cuando la página se está cargando.</p>
+        <div class="output">
+          <script>
+            document.write("Nombre: Adrian Tadeo Montes Vazquez<br>");
+            document.write("Ciudad: Los Mochis, Sinaloa<br>");
+            document.write("Correo: adrian.montes.dev@gmail.com");
+          </script>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Salida con alert()</h2>
+        <p>Muestra un cuadro emergente con información del usuario.</p>
+        <button class="btn" onclick="mostrarAlerta()">Mostrar alerta</button>
+      </article>
+
+      <article class="card">
+        <h2>Salida en consola</h2>
+        <p>Envía información a la consola del navegador para depuración o seguimiento.</p>
+        <button class="btn" onclick="mostrarConsola()">Ver en consola</button>
+      </article>
+
+      <article class="card">
+        <h2>Salida con print()</h2>
+        <p>Abre el cuadro de impresión del navegador para imprimir la página.</p>
+        <button class="btn" onclick="window.print()">Imprimir página</button>
+      </article>
+    </section>
+
+    <section class="info">
+      <h2>Datos personales utilizados</h2>
+      <ul class="list">
+        <li><strong>Nombre:</strong><br>Adrian Tadeo Montes Vazquez</li>
+        <li><strong>Teléfono:</strong><br>6682541622</li>
+        <li><strong>Correo:</strong><br>adrian.montes.dev@gmail.com</li>
+        <li><strong>Ciudad:</strong><br>Los Mochis, Sinaloa</li>
+        <li><strong>Carrera:</strong><br>Ingeniería de Software</li>
+        <li><strong>Pasatiempo:</strong><br>Diseño web y programación</li>
+      </ul>
+    </section>
+
+    <div class="footer">Hecho por Adrian Tadeo Montes Vazquez</div>
+  </div>
+
+  <script>
+    document.getElementById("salidaInnerHTML").innerHTML =
+      "<strong>Nombre:</strong> Adrian Tadeo Montes Vazquez <br><strong>Teléfono:</strong> 6682541622";
+
+    document.getElementById("salidaInnerText").innerText =
+      "Correo: adrian.montes.dev@gmail.com | Carrera: Ingeniería de Software";
+
+    function mostrarAlerta() {
+      alert("Hola, soy Adrian Tadeo Montes Vazquez y mi teléfono es 6682541622.");
+    }
+
+    function mostrarConsola() {
+      console.log("Datos personales");
+      console.log("Nombre: Adrian Tadeo Montes Vazquez");
+      console.log("Teléfono: 6682541622");
+      console.log("Ciudad: Los Mochis, Sinaloa");
+      console.log("Correo: adrian.montes.dev@gmail.com");
+    }
+  </script>
+</body>
+</html>
