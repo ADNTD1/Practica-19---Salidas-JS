@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P21 - Operaciones aritméticas con formularios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#fff5f5;
+      --bg2:#ffe4e6;
+      --card:#ffffff;
+      --primary:#b91c1c;
+      --primary-dark:#7f1d1d;
+      --accent:#ef4444;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#fecaca;
+      --shadow:0 18px 40px rgba(127,29,29,.12);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, #ffe4e6 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #fecaca 0%, transparent 28%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+
+    .container{
+      width:min(1100px, 92%);
+      margin:40px auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, #7f1d1d, #b91c1c 55%, #ef4444);
+      color:white;
+      border-radius:24px;
+      padding:36px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:300px;
+      height:300px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+      top:-90px;
+      right:-90px;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 14px;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      background:rgba(255,255,255,.08);
+      margin-bottom:14px;
+    }
+
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(30px, 4vw, 46px);
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      line-height:1.7;
+      color:rgba(255,255,255,.92);
+    }
+
+    .card{
+      margin-top:26px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .section-title{
+      margin:0 0 18px;
+      color:var(--primary-dark);
+      font-size:24px;
+    }
+
+    form{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+      gap:18px;
+      align-items:end;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    label{
+      font-weight:700;
+      color:var(--primary-dark);
+    }
+
+    input{
+      width:100%;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid #fca5a5;
+      background:#fff7f7;
+      font:inherit;
+      color:var(--text);
+      outline:none;
+      transition:border-color .18s ease, box-shadow .18s ease;
+    }
+
+    input:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(239,68,68,.12);
+    }
+
+    .buttons{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+      gap:14px;
+      margin-top:20px;
+    }
+
+    button{
+      border:none;
+      border-radius:16px;
+      padding:14px 18px;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      color:white;
+      font-family:inherit;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(185,28,28,.18);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 28px rgba(185,28,28,.22);
+    }
+
+    .secondary{
+      background:linear-gradient(135deg, #991b1b, #dc2626);
+    }
+
+    .result-box{
+      margin-top:22px;
+      background:#fff1f2;
+      border:1px dashed #fda4af;
+      border-radius:20px;
+      padding:18px;
+    }
+
+    .result-title{
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:8px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+
+    .result-value{
+      font-size:30px;
+      font-weight:800;
+      color:#881337;
+      line-height:1.2;
+    }
+
+    .note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .footer{
+      text-align:center;
+      color:#7f1d1d;
+      margin:22px 0 10px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    code{
+      background:#fee2e2;
+      color:#991b1b;
+      padding:2px 8px;
+      border-radius:8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="badge">Práctica P21</div>
+      <h1>Operaciones aritméticas con formularios</h1>
+      <p>
+        Esta versión retoma la práctica anterior, pero ahora utiliza un formulario con cajas de texto
+        y botones para ejecutar cada operación: suma, resta, división y exponenciación.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Ingresa dos valores</h2>
+
+      <form id="formulario" onsubmit="return false;">
+        <div class="field">
+          <label for="numero1">Número 1</label>
+          <input type="number" id="numero1" placeholder="Escribe el primer número" step="any">
+        </div>
+
+        <div class="field">
+          <label for="numero2">Número 2</label>
+          <input type="number" id="numero2" placeholder="Escribe el segundo número" step="any">
+        </div>
+      </form>
+
+      <div class="buttons">
+        <button type="button" onclick="calcular('suma')">Calcular suma</button>
+        <button type="button" onclick="calcular('resta')">Calcular resta</button>
+        <button type="button" onclick="calcular('division')">Calcular división</button>
+        <button type="button" onclick="calcular('potencia')">Calcular exponenciación</button>
+        <button type="button" class="secondary" onclick="limpiarCampos()">Limpiar</button>
+      </div>
+
+      <div class="result-box">
+        <div class="result-title">Resultado</div>
+        <div class="result-value" id="resultado">Aquí aparecerá el resultado</div>
+      </div>
+
+      <p class="note">
+        Se usan dos variables en JavaScript, obtenidas desde las cajas de texto del formulario.
+        Cada botón ejecuta una operación distinta y muestra el resultado directamente en la página.
+      </p>
+    </section>
+
+    <div class="footer">Archivo: <code>P21.html</code></div>
+  </div>
+
+  <script>
+    function obtenerValores() {
+      let a = parseFloat(document.getElementById("numero1").value);
+      let b = parseFloat(document.getElementById("numero2").value);
+
+      if (isNaN(a) || isNaN(b)) {
+        document.getElementById("resultado").textContent = "Por favor, ingresa ambos números.";
+        return null;
+      }
+
+      return { a, b };
+    }
+
+    function calcular(operacion) {
+      const valores = obtenerValores();
+      if (!valores) return;
+
+      let a = valores.a;
+      let b = valores.b;
+      let resultado = "";
+
+      switch (operacion) {
+        case "suma":
+          resultado = a + b;
+          break;
+        case "resta":
+          resultado = a - b;
+          break;
+        case "division":
+          if (b === 0) {
+            resultado = "No se puede dividir entre cero.";
+          } else {
+            resultado = a / b;
+          }
+          break;
+        case "potencia":
+          resultado = a ** b;
+          break;
+      }
+
+      document.getElementById("resultado").textContent = resultado;
+    }
+
+    function limpiarCampos() {
+      document.getElementById("numero1").value = "";
+      document.getElementById("numero2").value = "";
+      document.getElementById("resultado").textContent = "Aquí aparecerá el resultado";
+    }
+  </script>
+</body>
+</html>
