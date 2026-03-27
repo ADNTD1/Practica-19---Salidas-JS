@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablas de multiplicar dinámicas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #222;
+      padding: 30px;
+    }
+
+    .contenedor {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #1f3c88;
+    }
+
+    .descripcion {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .controles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      width: 260px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #1f3c88;
+      color: white;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    #mensaje {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #b91c1c;
+    }
+
+    #resultado {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .tabla {
+      background: #eef3ff;
+      border: 1px solid #cfd9f7;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .tabla h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      color: #163172;
+      text-align: center;
+    }
+
+    .tabla p {
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Tablas de multiplicar</h1>
+    <p class="descripcion">
+      Escribe un número positivo y entero. Al dar clic en el botón se mostrarán las tablas del 1 hasta el número indicado.
+    </p>
+
+    <div class="controles">
+      <input type="number" id="numero" placeholder="Ingresa un número entero positivo" min="1" step="1">
+      <button id="btnGenerar">Generar tablas de multiplicar</button>
+    </div>
+
+    <div id="mensaje"></div>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    const boton = document.getElementById("btnGenerar");
+    const numeroInput = document.getElementById("numero");
+    const resultado = document.getElementById("resultado");
+    const mensaje = document.getElementById("mensaje");
+
+    boton.addEventListener("click", function () {
+      resultado.innerHTML = "";
+      mensaje.textContent = "";
+
+      const valor = Number(numeroInput.value);
+
+      if (!Number.isInteger(valor) || valor <= 0) {
+        mensaje.textContent = "Por favor, escribe un número entero positivo.";
+        return;
+      }
+
+      for (let i = 1; i <= valor; i++) {
+        let tablaHTML = `<div class="tabla"><h2>Tabla del ${i}</h2>`;
+
+        for (let j = 1; j <= 10; j++) {
+          tablaHTML += `<p>${i} x ${j} = ${i * j}</p>`;
+        }
+
+        tablaHTML += `</div>`;
+        resultado.innerHTML += tablaHTML;
+      }
+    });
+  </script>
+</body>
+</html>
