@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P24</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f4f4f4;
+    }
+
+    .contenedor {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      color: #333;
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1 id="fecha"></h1>
+  </div>
+
+  <script>
+    const fechaActual = new Date();
+
+    let diaSemana;
+    let mes;
+
+    switch (fechaActual.getDay()) {
+      case 0:
+        diaSemana = "domingo";
+        break;
+      case 1:
+        diaSemana = "lunes";
+        break;
+      case 2:
+        diaSemana = "martes";
+        break;
+      case 3:
+        diaSemana = "miércoles";
+        break;
+      case 4:
+        diaSemana = "jueves";
+        break;
+      case 5:
+        diaSemana = "viernes";
+        break;
+      case 6:
+        diaSemana = "sábado";
+        break;
+      default:
+        diaSemana = "día desconocido";
+    }
+
+    switch (fechaActual.getMonth()) {
+      case 0:
+        mes = "Enero";
+        break;
+      case 1:
+        mes = "Febrero";
+        break;
+      case 2:
+        mes = "Marzo";
+        break;
+      case 3:
+        mes = "Abril";
+        break;
+      case 4:
+        mes = "Mayo";
+        break;
+      case 5:
+        mes = "Junio";
+        break;
+      case 6:
+        mes = "Julio";
+        break;
+      case 7:
+        mes = "Agosto";
+        break;
+      case 8:
+        mes = "Septiembre";
+        break;
+      case 9:
+        mes = "Octubre";
+        break;
+      case 10:
+        mes = "Noviembre";
+        break;
+      case 11:
+        mes = "Diciembre";
+        break;
+      default:
+        mes = "Mes desconocido";
+    }
+
+    const dia = fechaActual.getDate();
+    const anio = fechaActual.getFullYear();
+
+    document.getElementById("fecha").textContent = `Hoy es ${diaSemana} ${dia} de ${mes} del año ${anio}`;
+  </script>
+</body>
+</html>
