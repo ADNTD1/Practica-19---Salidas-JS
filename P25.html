@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablas de multiplicar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #222;
+      padding: 30px;
+    }
+
+    .contenedor {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      color: #1f3c88;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .acciones {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #1f3c88;
+      color: white;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    #resultado {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .tabla {
+      background: #eef3ff;
+      border: 1px solid #cfd9f7;
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .tabla h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      color: #163172;
+      text-align: center;
+    }
+
+    .tabla p {
+      margin: 6px 0;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Tablas de multiplicar del 1 al 10</h1>
+    <p>Da clic en el botón para generar las tablas usando ciclos de JavaScript.</p>
+
+    <div class="acciones">
+      <button id="btnGenerar">Generar tablas de multiplicar</button>
+    </div>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    const boton = document.getElementById("btnGenerar");
+    const resultado = document.getElementById("resultado");
+
+    boton.addEventListener("click", function () {
+      resultado.innerHTML = "";
+
+      for (let i = 1; i <= 10; i++) {
+        let tablaHTML = `<div class="tabla"><h2>Tabla del ${i}</h2>`;
+
+        for (let j = 1; j <= 10; j++) {
+          tablaHTML += `<p>${i} x ${j} = ${i * j}</p>`;
+        }
+
+        tablaHTML += `</div>`;
+        resultado.innerHTML += tablaHTML;
+      }
+    });
+  </script>
+</body>
+</html>
