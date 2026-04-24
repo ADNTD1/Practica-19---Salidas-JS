@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P28 - Celsius a Fahrenheit</title>
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f4f4f5, #e5e7eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e5e7eb;
+}
+
+.badge {
+    display: inline-block;
+    background: #000000;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #4b5563;
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    color: #111827;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 16px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #000000;
+}
+
+button {
+    width: 100%;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #1f2937;
+    transform: translateY(-1px);
+}
+
+.resultado {
+    margin-top: 22px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #f9fafb;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 56px;
+}
+</style>
+</head>
+<body>
+    <div class="card">
+        <span class="badge">Práctica 28</span>
+        <h1>Celsius a Fahrenheit</h1>
+        <p>Lee una temperatura en grados Celsius y la convierte a Fahrenheit.</p>
+
+        <form id="formulario">
+            <label for="celsius">Temperatura en Celsius:</label>
+            <input type="number" id="celsius" placeholder="Ejemplo: 25" step="any" required>
+            <button type="submit">Convertir</button>
+        </form>
+
+        <div class="resultado" id="resultado">Resultado aquí...</div>
+    </div>
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const celsius = parseFloat(document.getElementById("celsius").value);
+            const fahrenheit = celsius * 9 / 5 + 32;
+
+            document.getElementById("resultado").textContent =
+                celsius + " Celsius = " + fahrenheit.toFixed(1) + " Fahrenheit";
+        });
+    </script>
+</body>
+</html>
